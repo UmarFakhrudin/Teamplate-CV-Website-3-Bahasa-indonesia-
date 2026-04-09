@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", serif;
+  
+  --color-brand-50: #f0f4ff;
+  --color-brand-100: #e0e9ff;
+  --color-brand-200: #c1d3ff;
+  --color-brand-300: #92b1ff;
+  --color-brand-400: #5c84ff;
+  --color-brand-500: #3354ff;
+  --color-brand-600: #1a2eff;
+  --color-brand-700: #1422eb;
+  --color-brand-800: #111bc1;
+  --color-brand-900: #141e98;
+  
+  --color-accent-cyan: #06b6d4;
+  --color-accent-violet: #8b5cf6;
+  --color-accent-rose: #f43f5e;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased transition-colors duration-300;
+  }
+
+  .dark body {
+    @apply bg-slate-950 text-slate-50;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-linear-to-r from-brand-600 via-accent-cyan to-accent-violet;
+  }
+  
+  .bg-glass {
+    @apply bg-white/70 backdrop-blur-xl border border-white/20;
+  }
+
+  .dark .bg-glass {
+    @apply bg-slate-900/70 border-white/10;
+  }
+  
+  .shadow-glow {
+    @apply shadow-[0_0_20px_rgba(139,92,246,0.15)];
+  }
+
+  .dark .shadow-glow {
+    @apply shadow-[0_0_30px_rgba(139,92,246,0.3)];
+  }
+
+  .cursor-follower {
+    @apply fixed top-0 left-0 w-8 h-8 bg-brand-500/30 rounded-full pointer-events-none z-[9999] blur-sm hidden;
+  }
+
+  @media (pointer: fine) {
+    .cursor-follower {
+      @apply block;
+    }
+  }
+}
